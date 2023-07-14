@@ -57,7 +57,7 @@
    10. All Cucumber feature files are kept under the `resources/features` folder. Feature files are duplicated with simple tweak
        in the file names, feature names and scenario names on purpose, to prove that parallel test execution is working. This folder also have `junit-platform.properties`
        file which contains configuration details for both Junit5 and Cucumber. This folder also contains another properties file
-       `testconfigurations.properties`, in this file some common test data are kept, which will be accessed as runtime, and it serves as a bit of
+       `testconfigurations.properties`, in this file some common test data are kept, which will be accessed at runtime, and it serves as a bit of
        an abstraction layer for the Cucumber feature file, to maintain better hygiene.
    12. The `dockerfile` is kept as a simple example of how you can run the tests of this framework within a container.
         In subsequent updates to this framework, new capabilities will be added to scale up the test infrastructure.
