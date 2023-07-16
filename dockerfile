@@ -6,4 +6,4 @@ COPY mvnw pom.xml ./
 COPY src ./src
 
 FROM playwright as test
-CMD ["./mvnw", "test"]
+CMD ["./mvnw", "verify"]

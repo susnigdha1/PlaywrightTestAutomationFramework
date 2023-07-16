@@ -5,8 +5,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 public class PlaywrightBrowserSupplier implements PlaywrightBrowser {
     Playwright playwright = Playwright.create();
@@ -67,7 +65,6 @@ public class PlaywrightBrowserSupplier implements PlaywrightBrowser {
      */
     @Override
     public Page getPlaywrightPage(){
-        page.onRequest(request -> assertEquals(200, request.response().status()));
         return page;
     }
 

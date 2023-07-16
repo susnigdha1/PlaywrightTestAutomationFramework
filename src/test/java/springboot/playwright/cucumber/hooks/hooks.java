@@ -1,13 +1,11 @@
 package springboot.playwright.cucumber.hooks;
-
 import io.cucumber.java.Scenario;
 import springboot.playwright.cucumber.playwright.PlaywrightBrowser;
 import io.cucumber.java.After;
 
 public class hooks {
   PlaywrightBrowser playwrightBrowser;
-    hooks(PlaywrightBrowser browser)
-    {
+    hooks(PlaywrightBrowser browser) {
         this.playwrightBrowser=browser;
     }
 

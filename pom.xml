@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.susnigdha</groupId>
 	<artifactId>springboot.playwright.cucumber</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>springboot.playwright.cucumber</name>
 	<description>Demo project for Spring Boot, Playwright, Junit 5 and Cucumber</description>
 	<properties>
@@ -71,56 +71,30 @@
 		</plugins>
 		</pluginManagement>
 		<plugins>
-			<!-->
-				<plugin>
-				<groupId>io.fabric8</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.43.0</version>
-				<executions>
-					<execution>
-						<id>start-playwright-container</id>
-						<phase>pre-integration-test</phase>
-						<goals>
-							<goal>start</goal>
-						</goals>
-						<configuration>
-							<logDate>default</logDate>
-							<verbose>true</verbose>
-							<imagePullPolicy>IfNotPresent</imagePullPolicy>
-							<images>
-								<image>
-									<name>mcr.microsoft.com/playwright/java:v1.35.0-jammy</name>
-								<run>
-									<env>
-										<UBUNTU_OPTS>-Xmx32m</UBUNTU_OPTS>
-									</env>
-									<wait>
-										<time>100</time>
-									</wait>
-								</run>
-							</image>
-					</images>
-				</configuration>
-					</execution>
-					<execution>
-						<phase>prepare-package</phase>
-						<id>stop-playwright-container</id>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M5</version>
 					<configuration>
-						<test>runner.java</test>
+						<test>runner*.java</test>
 					</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<executions>
+					<execution>
+						<configuration>
+							<test>runner*.java</test>
+						</configuration>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
