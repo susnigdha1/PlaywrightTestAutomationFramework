@@ -43,4 +43,10 @@ public class stepDefinitions {
     {
         objPageObject.verifyShoppingCartData(testData);
     }
+
+    @And("I perform checkout")
+    public void iPerformCheckout()
+    {
+        objPageObject.checkoutShoppingCart();
+    }
 }

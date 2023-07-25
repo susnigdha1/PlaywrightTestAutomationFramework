@@ -10,12 +10,14 @@
 	</parent>
 	<groupId>com.susnigdha</groupId>
 	<artifactId>springboot.playwright.cucumber</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<name>springboot.playwright.cucumber</name>
 	<description>Demo project for Spring Boot, Playwright, Junit 5 and Cucumber</description>
 	<properties>
 		<java.version>1.8</java.version>
 		<cucumber.version>6.10.2</cucumber.version>
+		<junit.jupiter.version>5.9.1</junit.jupiter.version>
+		<playwright.version>1.35.0</playwright.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -46,18 +48,24 @@
 		<dependency>
 			<groupId>com.microsoft.playwright</groupId>
 			<artifactId>playwright</artifactId>
-			<version>1.35.0</version>
+			<version>${playwright.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>5.9.1</version>
+			<version>${junit.jupiter.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-suite</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.12.0</version>
 		</dependency>
 	</dependencies>
 

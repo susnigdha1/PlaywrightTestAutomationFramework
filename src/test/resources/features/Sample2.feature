@@ -9,6 +9,7 @@ Feature: Second Shopping cart display
     And I verify that the following product and quantity are selected
     |ProductName          |Quantity|
     |Sauce Labs Bike Light|1      |
+    And I perform checkout
 
 
 
