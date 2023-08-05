@@ -1,6 +1,5 @@
 package springboot.playwright.cucumber.stepDefinitions;
 import io.cucumber.java.en.And;
-import org.springframework.scheduling.annotation.Async;
 import springboot.playwright.cucumber.pageObjects.PageObject;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;

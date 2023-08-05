@@ -43,30 +43,30 @@
 
    1. This project structure is derived from Maven test project structure. If you have earlier worked with Maven,
    then you are already familiar with the high level folder structure of this project.
-   2. Refer to the pom.xml file to understand the dependencies required to build the project. Added both Surefire and Failsafe plugins,
+   2. Refer to the pom.xml file to understand the dependencies required to build the project. Introduced AOP and Lombok dependencies. Added both Surefire and Failsafe plugins,
       to demonstrate at which build stage, what tests will be executed. The 'test' phase will execute the tests using Surefire, as unit tests,
       and the 'integration-test' or 'verify' phase will execute the tests as integration tests.
    3. The `src.test.java.springboot.playwright.cucumber` package organizes the code base
-   4. The `configurations` package keeps the needed configuration files for Spring-boot test context
-   5. The `hooks` package contains the hooks class file. It is responsible for mapping the cucumber hooks, the PlaywrightBrowser dependency
-      is injected using constructor
-   6. The `pageObjects` package contains the Page Object classes. For simplified example, only one such classfile is kept. The PlaywrightBrowser dependency
+   4. The `aop` package keeps the code for Aspect oriented programming. It has been introduced to broaden the learning context.
+   5. The `configurations` package keeps the needed configuration files for Spring-boot test context. Introduced @EnableAspectJAutoProxy annotation 
+   6. The `hooks` package contains the hooks class file. It is responsible for mapping the cucumber hooks, the PlaywrightBrowser dependency
+      is injected using constructor. Added some piece of code to stop tracing if it is set to true
+   7. The `pageObjects` package contains the Page Object classes. For simplified example, only one such classfile is kept. The PlaywrightBrowser dependency
       is injected using constructor. If you carefully read this file, you will get good idea about how to use different playwright locator strategies
-   7. The `playwright` package contains the implementation of factory-design pattern using spring-boot. This helps in initializing
-      and supplying the playwright browser, browser context and page, depending upon the test parameter passed through `TestData.properties` file 
-   8. The `runners` package contains the Junit5 style cucumber runner, responsible for executing the tests. It contains two runner classes.
+   8. The `playwright` package contains the implementation of factory-design pattern using spring-boot. This helps in initializing
+      and supplying the playwright browser, browser context and page, depending upon the parameters passed through `runner.*` classes as system property. Introduced optional tracing parameter 
+   9. The `runners` package contains the Junit5 style cucumber runner, responsible for executing the tests. It contains two runner classes.
       One for Chrome and the other for firefox browser. These are added to support cross-browser execution.
-   9. The stepDefinitions package contains the Cucumber step definition classes. For simplified example, only one such classfile is kept.
-   10. All Cucumber feature files are kept under the `resources/features` folder. Feature files are duplicated with simple tweak
+   10. The stepDefinitions package contains the Cucumber step definition classes. For simplified example, only one such classfile is kept.
+   11. All Cucumber feature files are kept under the `resources/features` folder. Feature files are duplicated with simple tweak
        in the file names, feature names and scenario names on purpose, to prove that parallel test execution is working. This folder also have `junit-platform.properties`
        file which contains configuration details for both Junit5 and Cucumber. This folder also contains another properties file
        `testconfigurations.properties`, in this file some common test data are kept, which will be accessed at runtime, and it serves as a bit of
        an abstraction layer for the Cucumber feature file, to maintain better hygiene.
-   11. The `dockerfile` is kept as a simple example of how you can run the tests of this framework within a container.
+   12. The `dockerfile` is kept as a simple example of how you can run the tests of this framework within a container.
         In subsequent updates to this framework, new capabilities will be added to scale up the test infrastructure.
 
 **Planned future offerings of this framework:**
 
    1. More coding examples to handle alerts, browser tabs, shadow dom's etc
    2. API testing
-   3. Tracing of browser network traffic

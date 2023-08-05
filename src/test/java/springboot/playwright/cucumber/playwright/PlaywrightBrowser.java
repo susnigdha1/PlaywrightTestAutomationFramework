@@ -13,4 +13,6 @@ public interface PlaywrightBrowser {
     Page getPlaywrightPage();
     byte[] captureScreenshot();
     void close();
+    void setTracing(Boolean option);
+    boolean isTracingOptionSet();
 }

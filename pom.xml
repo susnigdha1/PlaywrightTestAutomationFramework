@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.susnigdha</groupId>
 	<artifactId>springboot.playwright.cucumber</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.3-SNAPSHOT</version>
 	<name>springboot.playwright.cucumber</name>
 	<description>Demo project for Spring Boot, Playwright, Junit 5 and Cucumber</description>
 	<properties>
@@ -18,6 +18,7 @@
 		<cucumber.version>6.10.2</cucumber.version>
 		<junit.jupiter.version>5.9.1</junit.jupiter.version>
 		<playwright.version>1.35.0</playwright.version>
+		<lombok.version>1.18.20</lombok.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -66,6 +67,18 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.12.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.8.12</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 

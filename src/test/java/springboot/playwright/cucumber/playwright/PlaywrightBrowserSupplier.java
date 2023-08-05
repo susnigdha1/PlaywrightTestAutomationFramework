@@ -1,19 +1,26 @@
 package springboot.playwright.cucumber.playwright;
 
 import com.microsoft.playwright.*;
+import java.util.Objects;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
+@SuppressWarnings({"unused","cast"})
 public class PlaywrightBrowserSupplier implements PlaywrightBrowser {
     Playwright playwright = Playwright.create();
     Browser browser;
     BrowserContext browserContext;
     Page page;
+    //This boolean value is used for introducing Playwright tracing
+    Boolean isTracingSet=false;
 
-    public PlaywrightBrowserSupplier(String BrowserType){
+    public PlaywrightBrowserSupplier(String BrowserType, Optional<Boolean> tracingOption){
         setPlaywrightBrowser(BrowserType);
+        //This method checks the optional tracingOption value and accordingly turns on Playwright browser tracing
+        setTracing(tracingOption.orElse(false));
     }
 
     /** This method will initialize the PlaywrightBrowser bean (Facade design pattern) with appropriate browser type
@@ -32,9 +39,6 @@ public class PlaywrightBrowserSupplier implements PlaywrightBrowser {
             case "firefox":
                 browser = playwright.firefox().launch();
                 break;
-            default:
-                browser = playwright.chromium().launch();
-                break;
         }
         setPlaywrightBrowserContext();
         setPlaywrightPage();
@@ -48,7 +52,6 @@ public class PlaywrightBrowserSupplier implements PlaywrightBrowser {
     @Override
     public void setPlaywrightBrowserContext() {
         browserContext=getPlaywrightBrowser().newContext();
-
     }
 
     @Override
@@ -61,7 +64,6 @@ public class PlaywrightBrowserSupplier implements PlaywrightBrowser {
     }
 
     /**This method will help to retrieve the Playwright page from the PlaywrightBrowser bean
-     * @return
      */
     @Override
     public Page getPlaywrightPage(){
@@ -77,12 +79,35 @@ public class PlaywrightBrowserSupplier implements PlaywrightBrowser {
 
     /**
      * This method will be called from Hooks class, from cucumber After hook
-     * @Author Susnigdha Chatterjee
+     * @author Susnigdha Chatterjee
      * @return byte array which holds the screenshot
      */
     @Override
     public byte[] captureScreenshot(){
         Path objPath = Paths.get("target/screenshots/Screenshot_"+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyy_hhmmss"))+".png");
         return page.screenshot(new Page.ScreenshotOptions().setPath(objPath).setFullPage(true));
+    }
+
+    /**
+     * This method will be called from Constructor to set the Playwright browser tracing on
+     * @author Susnigdha Chatterjee
+     * @return byte array which holds the screenshot
+     */
+    @Override
+    public void setTracing(Boolean option){
+        if(option && !Objects.isNull(browserContext)){
+            browserContext.tracing().start(new Tracing.StartOptions()
+                    .setSnapshots(true));
+            isTracingSet = true;
+        }
+    }
+    /**
+     * This method will be called from Hooks class's After annotation to decide if Playwright browser tracing needs to be turned off
+     * @author Susnigdha Chatterjee
+     * @return byte array which holds the screenshot
+     */
+    @Override
+    public boolean isTracingOptionSet(){
+        return isTracingSet;
     }
 }
