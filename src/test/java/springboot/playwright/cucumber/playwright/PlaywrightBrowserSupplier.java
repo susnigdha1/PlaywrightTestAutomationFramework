@@ -2,6 +2,7 @@ package springboot.playwright.cucumber.playwright;
 
 import com.microsoft.playwright.*;
 import java.util.Objects;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -12,7 +13,7 @@ import java.util.Optional;
 public class PlaywrightBrowserSupplier implements PlaywrightBrowser {
     Playwright playwright = Playwright.create();
     Browser browser;
-    BrowserContext browserContext;
+    public BrowserContext browserContext;
     Page page;
     //This boolean value is used for introducing Playwright tracing
     Boolean isTracingSet=false;
@@ -75,6 +76,8 @@ public class PlaywrightBrowserSupplier implements PlaywrightBrowser {
         page.close();
         browserContext.close();
         playwright.close();
+        System.clearProperty("browser");
+        System.clearProperty("tracing");
     }
 
     /**
@@ -91,7 +94,7 @@ public class PlaywrightBrowserSupplier implements PlaywrightBrowser {
     /**
      * This method will be called from Constructor to set the Playwright browser tracing on
      * @author Susnigdha Chatterjee
-     * @return byte array which holds the screenshot
+     * this method returns byte array which holds the screenshot
      */
     @Override
     public void setTracing(Boolean option){

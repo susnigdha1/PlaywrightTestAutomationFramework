@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.susnigdha</groupId>
 	<artifactId>springboot.playwright.cucumber</artifactId>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.0.4-SNAPSHOT</version>
 	<name>springboot.playwright.cucumber</name>
 	<description>Demo project for Spring Boot, Playwright, Junit 5 and Cucumber</description>
 	<properties>

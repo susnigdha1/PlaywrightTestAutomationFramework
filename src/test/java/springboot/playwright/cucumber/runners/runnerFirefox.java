@@ -13,10 +13,14 @@ import org.junit.platform.suite.api.Suite;
 @ConfigurationParameter(key="cucumber.plugin", value = "html:target/CucumberTestExecutionReport_Firefox.html")
 @Slf4j
 public class runnerFirefox {
-    @Before
-    public void setBrowser() {
-        System.setProperty("browser","firefox");
-        System.setProperty("tracing", String.valueOf(true));
-        log.info("Passing browser property to PlaywrightBrowser bean");
+   @Before
+   public void setBrowser() {
+       if(System.getProperties().containsKey("browser")&&System.getProperties().containsKey("tracing")){
+           System.clearProperty("browser");
+           System.clearProperty("tracing");
+       }
+       System.setProperty("browser","chrome");
+       System.setProperty("tracing", String.valueOf(true));
+       log.info("Passing browser property to PlaywrightBrowser bean");
     }
 }

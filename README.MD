@@ -68,5 +68,5 @@
 
 **Planned future offerings of this framework:**
 
-   1. More coding examples to handle alerts, browser tabs, shadow dom's etc
+   1. More coding examples to handle alerts, shadow dom's etc
    2. API testing

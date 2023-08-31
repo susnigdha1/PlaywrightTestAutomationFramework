@@ -18,6 +18,10 @@ public class runnerChrome {
         //You could pass these property values using application.properties file also.
         //I am writing it in this way to make it easy to understand for those who have less technical knowledge
         //and willing to learn and experiment more
+        if(System.getProperties().containsKey("browser")&&System.getProperties().containsKey("tracing")) {
+            System.clearProperty("browser");
+            System.clearProperty("tracing");
+        }
         System.setProperty("browser","chrome");
         System.setProperty("tracing", String.valueOf(true));
         log.info("Passing browser property to PlaywrightBrowser bean");

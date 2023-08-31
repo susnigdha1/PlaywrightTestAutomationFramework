@@ -3,6 +3,8 @@ import io.cucumber.java.en.And;
 import springboot.playwright.cucumber.pageObjects.PageObject;
 import io.cucumber.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
@@ -47,5 +49,10 @@ public class stepDefinitions {
     public void iPerformCheckout()
     {
         objPageObject.checkoutShoppingCart();
+    }
+
+    @And("I right click and open {string} item in another browser tab")
+    public void iRightClickAndOpenItemInAnotherBrowserTab(String itemName) throws InterruptedException, AWTException {
+        objPageObject.handleBrowserTabs(itemName);
     }
 }
